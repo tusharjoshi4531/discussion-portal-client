@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap");
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+form h1 {
+  text-align: center;
+}
+form .control {
+  display: flex;
+  flex-direction: column;
+}
+form .control label {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.1rem;
+  font-weight: bold;
+}
+form .control input {
+  background-color: #EDEEF7;
+  border: 1px solid #EDEEF7;
+  border-radius: 12px;
+  padding: 0.3rem 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2) inset;
+  font-size: 0.8rem;
+  transition: 0.3s ease all;
+}
+form .control input:focus {
+  border: 1px solid black;
+}
+form .action {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+form .action button {
+  background-color: #EDEEF7;
+  border: none;
+  border-radius: 12px;
+  padding: 0.5rem 0.75rem;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  transition: 0.3s ease all;
+}
+form .action button[type=submit] {
+  background-color: #7868E6;
+  color: white;
+}
+form .action button:hover {
+  background-color: rgba(237, 238, 247, 0.5);
+}
+form .action button:hover[type=submit] {
+  background-color: #B8B5FF;
+}/*# sourceMappingURL=FormLayout.module.css.map */

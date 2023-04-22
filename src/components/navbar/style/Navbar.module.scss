@@ -1,0 +1,112 @@
+@import "../../../styles/variables.scss";
+
+.header {
+    z-index: 10;
+    height: $headerHeight;
+
+    background: white;
+    box-shadow: $shadow;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 1.25rem;
+
+    &__logo {
+        font-size: 1.25rem;
+        margin-right: 0.5rem;
+    }
+
+    &__action {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        &__item {
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            margin-right: $spacing-lg;
+            transition: 0.3s ease all;
+
+            &:hover {
+                color: $primaryDark;
+            }
+        }
+
+        @include breakpoint(md) {
+            margin-right: 0.5rem;
+        }
+    }
+
+    &__profile {
+        z-index: inherit;
+        display: flex;
+        gap: $spacing-lg;
+
+        position: absolute;
+        right: 0.5rem;
+        top: calc(#{$headerHeight} + 0.5rem);
+
+        background-color: white;
+        padding: 0.75rem;
+        border-radius: $borderRadius;
+
+        box-shadow: $shadow;
+
+        &__img {
+            width: calc(#{$dpFrac} * #{$headerHeight});
+            height: calc(#{$dpFrac} * #{$headerHeight});
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: $primary;
+            color: $primaryDark;
+            font-weight: bold;
+            font-size: 1rem;
+
+            border-radius: 100%;
+        }
+
+        &__name {
+            display: flex;
+            align-items: center;
+        }
+
+        @include breakpoint(md) {
+            position: relative;
+            top: 0;
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
+
+    &__toggle {
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        transition: 0.3s ease all;
+
+        &:hover {
+            color: $primaryDark;
+        }
+    }
+
+    button {
+        border: 2px solid black;
+        margin-left: $spacing-lg;
+        border-radius: $borderRadius;
+        background-color: white;
+        height: calc(#{$dpFrac} * #{$headerHeight});
+
+        transition: 0.3s ease all;
+
+        &:hover {
+            border-color: $primaryDark;
+            color: $primaryDark;
+        }
+    }
+}

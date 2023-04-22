@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap");
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+}
+
+.marginLarge {
+  margin: 1.5rem;
+}
+
+.marginSmall {
+  margin: 1rem;
+}
+
+.paddingLarge {
+  padding: 1.5rem;
+}
+
+.paddingSmall {
+  padding: 1rem;
+}
+
+.primary {
+  background-color: #B8B5FF;
+  color: black;
+}
+
+.primaryDark {
+  background-color: #7868E6;
+  color: white;
+}
+
+.secondary {
+  background-color: #E4FBFF;
+  color: black;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
+.background {
+  background-color: #EDEEF7;
+  color: black;
+}
+
+.white {
+  background-color: white;
+}/*# sourceMappingURL=Card.module.css.map */

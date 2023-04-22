@@ -1,0 +1,78 @@
+@import "../../../styles/variables.scss";
+
+$formGap: 2rem;
+$formPaddingX: 1rem;
+$actionGap: 1rem;
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    gap: $formGap;
+    padding: 0 $formPaddingX;
+
+    h1 {
+        text-align: center;
+    }
+
+    .control {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+            margin-bottom: 0.1rem;
+            font-weight: bold;
+        }
+
+        input {
+            background-color: $bg;
+
+            border: 1px solid $bg;
+            border-radius: $borderRadius;
+
+            padding: 0.3rem 0.5rem;
+            margin-bottom: 1rem;
+
+            box-shadow: $shadow inset;
+
+            font-size: 0.8rem;
+
+            transition: 0.3s ease all;
+
+            &:focus {
+                border: 1px solid black;
+            }
+        }
+    }
+
+    .action {
+        display: flex;
+        justify-content: flex-end;
+        gap: $actionGap;
+
+        button {
+            background-color: $bg;
+            border: none;
+            border-radius: $borderRadius;
+            padding: 0.5rem 0.75rem;
+            box-shadow: $shadow;
+            font-weight: bold;
+
+            transition: 0.3s ease all;
+
+            &[type="submit"] {
+                background-color: $primaryDark;
+                color: white;
+            }
+
+            &:hover {
+                background-color: rgba($bg, 0.5);
+                &[type="submit"] {
+                    background-color: $primary;
+                }
+            }
+        }
+    }
+}

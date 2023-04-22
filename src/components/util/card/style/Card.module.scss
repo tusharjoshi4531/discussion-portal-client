@@ -1,0 +1,58 @@
+@import "../../../../styles/variables.scss";
+
+$marginLarge: 1.5rem;
+$marginSmall: 1rem;
+
+$paddingLarge: 1.5rem;
+$paddingSmall: 1rem;
+
+.card {
+    background-color: white;
+    border-radius: $borderRadius;
+    box-shadow: $shadow;
+}
+
+.marginLarge {
+    margin: $marginLarge;
+}
+
+.marginSmall {
+    margin: $marginSmall;
+}
+
+.paddingLarge {
+    padding: $paddingLarge;
+}
+
+.paddingSmall {
+    padding: $paddingSmall;
+}
+
+.primary {
+    background-color: $primary;
+    color: black;
+}
+
+.primaryDark {
+    background-color: $primaryDark;
+    color: white;
+}
+
+.secondary {
+    background-color: $secondary;
+    color: black;
+}
+
+.dark {
+    background-color: $dark;
+    color: white;
+}
+
+.background {
+    background-color: $bg;
+    color: black;
+}
+
+.white {
+    background-color: white;
+}
