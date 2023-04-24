@@ -21,18 +21,26 @@
   padding: 1rem;
 }
 
+.borderRadiusSmall {
+  border-radius: calc(12px / 2);
+}
+
+.borderRadiusLarge {
+  border-radius: 12px;
+}
+
 .primary {
-  background-color: #B8B5FF;
+  background-color: #b8b5ff;
   color: black;
 }
 
 .primaryDark {
-  background-color: #7868E6;
+  background-color: #7868e6;
   color: white;
 }
 
 .secondary {
-  background-color: #E4FBFF;
+  background-color: #e4fbff;
   color: black;
 }
 
@@ -42,8 +50,15 @@
 }
 
 .background {
-  background-color: #EDEEF7;
+  background-color: #edeef7;
   color: black;
+}
+
+.clickable {
+  transition: 0.3s ease all;
+}
+.clickable:hover {
+  scale: 1.02;
 }
 
 .white {

@@ -19,8 +19,8 @@ form .control label {
   font-weight: bold;
 }
 form .control input {
-  background-color: #EDEEF7;
-  border: 1px solid #EDEEF7;
+  background-color: #edeef7;
+  border: 1px solid #edeef7;
   border-radius: 12px;
   padding: 0.3rem 0.5rem;
   margin-bottom: 1rem;
@@ -37,7 +37,7 @@ form .action {
   gap: 1rem;
 }
 form .action button {
-  background-color: #EDEEF7;
+  background-color: #edeef7;
   border: none;
   border-radius: 12px;
   padding: 0.5rem 0.75rem;
@@ -46,12 +46,12 @@ form .action button {
   transition: 0.3s ease all;
 }
 form .action button[type=submit] {
-  background-color: #7868E6;
+  background-color: #7868e6;
   color: white;
 }
 form .action button:hover {
   background-color: rgba(237, 238, 247, 0.5);
 }
 form .action button:hover[type=submit] {
-  background-color: #B8B5FF;
+  background-color: #b8b5ff;
 }/*# sourceMappingURL=FormLayout.module.css.map */

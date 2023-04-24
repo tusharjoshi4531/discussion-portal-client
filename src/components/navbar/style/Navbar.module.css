@@ -26,7 +26,7 @@
   transition: 0.3s ease all;
 }
 .header__action__item:hover {
-  color: #7868E6;
+  color: #7868e6;
 }
 @media (min-width: 48em) {
   .header__action {
@@ -51,8 +51,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #B8B5FF;
-  color: #7868E6;
+  background-color: #b8b5ff;
+  color: #7868e6;
   font-weight: bold;
   font-size: 1rem;
   border-radius: 100%;
@@ -76,7 +76,7 @@
   transition: 0.3s ease all;
 }
 .header__toggle:hover {
-  color: #7868E6;
+  color: #7868e6;
 }
 .header button {
   border: 2px solid black;
@@ -87,6 +87,6 @@
   transition: 0.3s ease all;
 }
 .header button:hover {
-  border-color: #7868E6;
-  color: #7868E6;
+  border-color: #7868e6;
+  color: #7868e6;
 }/*# sourceMappingURL=Navbar.module.css.map */

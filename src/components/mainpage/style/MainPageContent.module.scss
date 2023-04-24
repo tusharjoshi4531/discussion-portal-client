@@ -1,0 +1,78 @@
+@import "../../../styles/variables.scss";
+
+$asideWidth: 200px;
+$toggleExtra: 1.2rem;
+$toggleSize: 1.5rem;
+$togglePaddingX: 0rem;
+$togglePaddingY: 1rem;
+
+.content {
+    display: flex;
+
+    &__drawer {
+        z-index: 5;
+        background-color: $secondaryBg;
+        box-shadow: $shadow;
+        width: $asideWidth;
+
+        @include breakpoint(md) {
+            left: 0;
+        }
+
+        position: absolute;
+        top: $headerHeight;
+        bottom: 0px;
+        left: calc(0px - #{$asideWidth});
+
+        display: flex;
+
+        transition: 0.3s ease all;
+
+        &__active {
+            left: 0px;
+        }
+
+        &__toggle {
+            z-index: -1;
+            margin: auto 0px;
+            font-size: $toggleSize;
+
+            padding: $togglePaddingY $togglePaddingX;
+            border-radius: 0px $borderRadius $borderRadius 0px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: inherit;
+
+            transition: 0.3s ease all;
+
+            &__off {
+                translate: 0px calc(0px - #{$headerHeight} / 2);
+                box-shadow: none;
+            }
+
+            &__onn {
+                translate: calc(#{$toggleExtra})
+                    calc(0px - #{$headerHeight} / 2);
+
+                box-shadow: inherit;
+            }
+        }
+
+        &_content {
+            flex-grow: 1;
+        }
+    }
+
+    &__main {
+        flex-grow: 1;
+
+        transition: 0.3s ease all;
+
+        @include breakpoint(md) {
+            margin-left: $asideWidth;
+        }
+    }
+}

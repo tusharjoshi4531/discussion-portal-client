@@ -2,11 +2,12 @@
 
 $popins: "Poppins", sans-serif;
 
-$primary: #B8B5FF;
-$secondary: #E4FBFF;
-$primaryDark: #7868E6;
+$primary: #b8b5ff;
+$secondary: #e4fbff;
+$primaryDark: #7868e6;
 $dark: black;
-$bg: #EDEEF7;
+$bg: #edeef7;
+$secondaryBg: #d7daef;
 
 $spacing-md: 8px;
 $spacing-lg: 8px;
@@ -16,14 +17,12 @@ $borderRadius: 12px;
 
 $headerHeight: 3.125rem;
 
-$shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+$shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
 
 @mixin breakpoint($point) {
     @if ($point == md) {
         @media (min-width: 48em) {
-            @content
+            @content;
         }
     }
 }
-
-

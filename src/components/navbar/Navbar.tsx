@@ -1,23 +1,24 @@
 import { useState, useContext } from "react";
 import { AiOutlineHeart, AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
-import { BiDotsVertical } from "react-icons/bi";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 
-import useWindowSize from "../../hooks/use-window-size";
+import { WINDOW_TYPE } from "../../hooks/use-window-size";
 
 import classes from "./style/Navbar.module.css";
 import UserContext, { ACTION_TYPE } from "../../store/user-context";
 import { useNavigate } from "react-router-dom";
+import WindowContext from "../../store/window-context";
 
 const Navbar = () => {
     // State
     const [toggleOn, setToggleOn] = useState(false);
-    const { screenWidth } = useWindowSize();
 
     // Navigate hook
     const navigate = useNavigate();
 
     // Context
     const { username, dispatch } = useContext(UserContext);
+    const { windowType } = useContext(WindowContext);
 
     const toggleClickHandler = () => {
         setToggleOn((state) => !state);
@@ -26,10 +27,14 @@ const Navbar = () => {
     const loginClickHandler = () => {
         navigate("/auth");
     };
-    
+
     const logoutClickHandler = () => {
-        dispatch({type: ACTION_TYPE.CLEAR_VALUE})
-    }
+        dispatch({ type: ACTION_TYPE.CLEAR_VALUE });
+    };
+
+    const addTopicClickHandler = () => {
+        navigate("/add/topic");
+    };
 
     return (
         <header className={classes.header}>
@@ -40,25 +45,28 @@ const Navbar = () => {
                         <div className={classes.header__action__item}>
                             <AiOutlineHeart />
                         </div>
-                        <div className={classes.header__action__item}>
+                        <div
+                            className={classes.header__action__item}
+                            onClick={addTopicClickHandler}
+                        >
                             <AiOutlinePlus />
                         </div>
                     </>
                 )}
             </nav>
-            {username && (screenWidth >= 768 || toggleOn) && (
+            {username && (windowType === WINDOW_TYPE.WIDE || toggleOn) && (
                 <div className={classes.header__profile}>
                     <div className={classes.header__profile__img}>T</div>
                     <div className={classes.header__profile__name}>Tushar</div>
                     <button onClick={logoutClickHandler}>Logout</button>
                 </div>
             )}
-            {username && screenWidth < 768 && (
+            {username && windowType === WINDOW_TYPE.NARROW && (
                 <div
                     className={classes.header__toggle}
                     onClick={toggleClickHandler}
                 >
-                    {!toggleOn && <BiDotsVertical />}
+                    {!toggleOn && <BiDotsVerticalRounded />}
                     {toggleOn && <AiOutlineClose />}
                 </div>
             )}

@@ -6,6 +6,8 @@ $marginSmall: 1rem;
 $paddingLarge: 1.5rem;
 $paddingSmall: 1rem;
 
+$clickableScale: 1.02;
+
 .card {
     background-color: white;
     border-radius: $borderRadius;
@@ -26,6 +28,14 @@ $paddingSmall: 1rem;
 
 .paddingSmall {
     padding: $paddingSmall;
+}
+
+.borderRadiusSmall {
+    border-radius: calc(#{$borderRadius} / 2);
+}
+
+.borderRadiusLarge {
+    border-radius: $borderRadius;
 }
 
 .primary {
@@ -51,6 +61,13 @@ $paddingSmall: 1rem;
 .background {
     background-color: $bg;
     color: black;
+}
+
+.clickable {
+    transition: 0.3s ease all;
+    &:hover {
+        scale: $clickableScale;
+    }
 }
 
 .white {

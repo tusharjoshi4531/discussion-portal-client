@@ -1,7 +1,7 @@
-const MainPage = () => {
-  return (
-    <div>MainPage</div>
-  )
-}
+import MainPageContent from "../components/mainpage/MainPageContent";
 
-export default MainPage
+const MainPage = () => {
+    return <MainPageContent />;
+};
+
+export default MainPage;
