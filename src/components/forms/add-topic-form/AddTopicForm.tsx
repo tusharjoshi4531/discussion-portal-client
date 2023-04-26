@@ -1,21 +1,74 @@
-import React from "react";
+import { useState, useRef, useContext } from "react";
 import FormLayout from "../FormLayout";
 import { useNavigate } from "react-router-dom";
+import Select from "../../util/select/Select";
+import SelectedItem from "../selected-item/SelectedItem";
+import UserContext from "../../../store/user-context";
+import addTopic from "../../../api/discussion/addTopic";
+
+const tags = ["Edudcation", "Movies", "Games", "Sports", "Automobiles"];
 
 const AddTopicForm = () => {
     const navigate = useNavigate();
+
+    const { username, token } = useContext(UserContext);
+
+    const titleRef = useRef<HTMLInputElement>(null!);
+
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
     const cancelClickHandler = () => {
         navigate("/");
     };
 
+    const selectHandler = (selected: string) => {
+        setSelectedTags((state) => {
+            if (state.find((val) => val == selected)) return state;
+            else return [...state, selected];
+        });
+    };
+
+    const submitHandler = async () => {
+        const author = username;
+        const title = titleRef.current.value;
+
+        if (author == "" || title == "" || tags.length === 0) return;
+
+        try {
+            await addTopic(token, author, title, tags);
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const tagCloseHandler = (tag: string) => {
+        setSelectedTags((state) => state.filter((item) => item !== tag));
+    };
+
+    const selectedTagcomponents = selectedTags.map((tag) => (
+        <SelectedItem
+            item={tag}
+            key={tag}
+            onClose={() => tagCloseHandler(tag)}
+        />
+    ));
+
     return (
         <FormLayout
+            onSubmit={submitHandler}
             title="Add Topic"
             control={
                 <>
                     <label>Title: </label>
-                    <input type="text" placeholder="title" />
+                    <input type="text" placeholder="Title" ref={titleRef} />
+
+                    <label>Tags: </label>
+                    <Select options={tags} onSelect={selectHandler} />
+
+                    <div style={{ display: "flex", flexWrap: "wrap" }}>
+                        {selectedTagcomponents}
+                    </div>
                 </>
             }
             action={

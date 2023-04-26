@@ -1,0 +1,35 @@
+@import "../../../../styles/variables.scss";
+
+$padding: 0.25rem;
+$maxHeight: 3.5rem;
+
+.menu {
+    width: 100%;
+
+    box-shadow: $shadow;
+    background-color: $bg;
+    border-radius: calc($borderRadius / 2);
+
+    padding: $padding;
+    max-height: $maxHeight;
+    margin-bottom: 1rem;
+
+    font-size: 0.8rem;
+
+    overflow: scroll;
+
+    &__item {
+        border-radius: calc($borderRadius / 2);
+
+        padding: $padding 1rem;
+
+        &:hover {
+            background-color: white;
+        }
+    }
+}
+
+.hide {
+    position: absolute;
+    right: 150vw;
+}

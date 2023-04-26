@@ -1,8 +1,9 @@
 @import "../../../../styles/variables.scss";
 
-$contentMargin: 2rem;
+$contentMargin: 1rem;
 $contentGap: 1rem;
 $actionsSize: 1.5rem;
+$tagsGap: 1rem;
 
 .content {
     margin-bottom: $contentMargin;
@@ -17,18 +18,54 @@ $actionsSize: 1.5rem;
         font-weight: lighter;
     }
 
-    &__actions {
-        display: flex;
-        align-items: center;
-        &__like {
-            display: flex;
-            align-items: center;
-            color: $primaryDark;
-            font-size: $actionsSize;
+    &__title {
+        transition: 0.3s ease all;
+        &:hover {
+            color: $primary;
         }
     }
 
-    &:hover {
-        color: $primaryDark
+    &__tags {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+
+        &__toggle {
+            font-size: 0.8rem;
+            transition: 0.3s ease all;
+
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                color: $primary;
+            }
+        }
+
+        ul {
+            display: flex;
+            padding: 0;
+
+            list-style-type: none;
+            gap: $tagsGap;
+        }
+        &__item {
+            font-size: 0.8rem;
+            color: $primaryFontColor;
+            background-color: $primary;
+            padding: 0.2rem 1rem;
+            border-radius: $borderRadius;
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    &__like {
+        display: flex;
+        align-items: center;
+        color: $primaryDark;
+        font-size: $actionsSize;
     }
 }

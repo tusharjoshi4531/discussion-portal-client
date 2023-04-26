@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap");
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.1rem 1rem;
+  background-color: #b8b5ff;
+  font-size: 0.8rem;
+  color: rgb(50, 50, 50);
+  border-radius: 12px;
+}
+.container__close {
+  display: flex;
+  align-items: center;
+  transition: 0.3s ease all;
+}
+.container__close:hover {
+  color: #7868e6;
+}/*# sourceMappingURL=SelectedItem.module.css.map */
