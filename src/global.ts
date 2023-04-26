@@ -1,0 +1,1 @@
+export const TAGS = ["Edudcation", "Movies", "Games", "Sports", "Automobiles"];

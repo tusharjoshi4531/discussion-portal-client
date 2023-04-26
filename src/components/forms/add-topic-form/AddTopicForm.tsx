@@ -5,8 +5,7 @@ import Select from "../../util/select/Select";
 import SelectedItem from "../selected-item/SelectedItem";
 import UserContext from "../../../store/user-context";
 import addTopic from "../../../api/discussion/addTopic";
-
-const tags = ["Edudcation", "Movies", "Games", "Sports", "Automobiles"];
+import { TAGS as tags } from "../../../global";
 
 const AddTopicForm = () => {
     const navigate = useNavigate();
@@ -35,7 +34,7 @@ const AddTopicForm = () => {
         if (author == "" || title == "" || tags.length === 0) return;
 
         try {
-            await addTopic(token, author, title, tags);
+            await addTopic(token, author, title, selectedTags);
             navigate("/");
         } catch (error) {
             console.log(error);

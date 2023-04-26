@@ -5,21 +5,11 @@ import classes from "./style/TopicList.module.css";
 import TopicCard from "../topic-card/TopicCard";
 import getTopics from "../../../api/discussion/getTopics";
 
-const TopicList = () => {
-    const [topicsData, setTopicsData] = useState<ITopicData[]>([]);
+interface ITopicListProps {
+    topicsData: ITopicData[]
+}
 
-    useEffect(() => {
-        const fetchTopics = async () => {
-            try {
-                const result = await getTopics();
-                setTopicsData(result);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        fetchTopics();
-    }, []);
+const TopicList: React.FC<ITopicListProps> = ({topicsData}) => {
 
     const TopicComponents = topicsData.map((topic) => (
         <TopicCard

@@ -14,12 +14,16 @@ $tagsGap: 1rem;
 
     transition: 0.3s ease all;
 
-    &__author {
-        font-weight: lighter;
-    }
+    &__body {
+        &__author {
+            transition: 0.3s ease all;
+            font-weight: lighter;
+        }
 
-    &__title {
-        transition: 0.3s ease all;
+        &__title {
+            transition: 0.3s ease all;
+        }
+
         &:hover {
             color: $primary;
         }

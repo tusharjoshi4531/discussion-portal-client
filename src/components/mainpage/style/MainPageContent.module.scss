@@ -1,6 +1,8 @@
 @import "../../../styles/variables.scss";
 
 $asideWidth: 200px;
+$assidePadding: 1rem;
+$assideGap: 1rem;
 $toggleExtra: 1.2rem;
 $toggleSize: 1.5rem;
 $togglePaddingX: 0rem;
@@ -63,6 +65,18 @@ $togglePaddingY: 1rem;
 
         &_content {
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: $assideGap;
+            padding: $assidePadding;
+
+            & > * {
+                padding-bottom: 0.2rem;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $secondaryFontColor;
+                }
+            }
         }
     }
 

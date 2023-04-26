@@ -6,13 +6,14 @@
   gap: 1rem;
   transition: 0.3s ease all;
 }
-.content__author {
+.content__body__author {
+  transition: 0.3s ease all;
   font-weight: lighter;
 }
-.content__title {
+.content__body__title {
   transition: 0.3s ease all;
 }
-.content__title:hover {
+.content__body:hover {
   color: #b8b5ff;
 }
 .content__tags {

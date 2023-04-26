@@ -40,8 +40,12 @@ const TopicCard: React.FC<ITopicCardProps> = ({ author, title, tags }) => {
     return (
         <Card color="secondary" borderRadius="small" padding="small">
             <div className={classes.content} onClick={cardClickHandler}>
-                <h6 className={classes.content__author}>Posted By {author}</h6>
-                <h1 className={classes.content__title}>{title}</h1>
+                <div className={classes.content__body}>
+                    <h6 className={classes.content__body__author}>
+                        Posted by {author}
+                    </h6>
+                    <h1 className={classes.content__body__title}>{title}</h1>
+                </div>
                 <div className={classes.content__tags}>
                     <div
                         className={classes.content__tags__toggle}
