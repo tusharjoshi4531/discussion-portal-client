@@ -1,16 +1,12 @@
 import axios from "axios";
+import { ITopicData } from "../../types/Discussion";
 import { SERVER_URL } from "../Util";
 
-const addTopic = (
-    token: string,
-    author: string,
-    title: string,
-    tags: string[]
-) => {
+export const starTopic = async (token: string, topicId: string, state: boolean) => {
     try {
-        axios.post(
-            `${SERVER_URL}/topics/add`,
-            { author, title, tags },
+        axios.patch(
+            `${SERVER_URL}/topics/star`,
+            { topicId, state },
             {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -22,4 +18,3 @@ const addTopic = (
     }
 };
 
-export default addTopic;

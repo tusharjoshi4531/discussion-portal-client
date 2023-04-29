@@ -13,14 +13,23 @@ interface ITopicCardProps {
     author: string;
     title: string;
     tags: string[];
+    isStarred?: boolean;
+    onStarClick?: () => void;
+    onClick?: () => void;
 }
 
-const TopicCard: React.FC<ITopicCardProps> = ({ author, title, tags }) => {
-    const [starred, setStarred] = useState(false);
+const TopicCard: React.FC<ITopicCardProps> = ({
+    author,
+    title,
+    tags,
+    isStarred = false,
+    onStarClick,
+    onClick,
+}) => {
     const [showTags, setShowTags] = useState(false);
 
     const starClickHandler = () => {
-        setStarred((state) => !state);
+        if(onStarClick) onStarClick();
     };
 
     const toggleClickHandler = () => {
@@ -29,6 +38,7 @@ const TopicCard: React.FC<ITopicCardProps> = ({ author, title, tags }) => {
 
     const cardClickHandler = () => {
         console.log("click");
+        if (onClick) onClick();
     };
 
     const tagComponents = tags.map((tag) => (
@@ -61,7 +71,7 @@ const TopicCard: React.FC<ITopicCardProps> = ({ author, title, tags }) => {
                     className={classes.actions__like}
                     onClick={starClickHandler}
                 >
-                    {starred ? <AiFillStar /> : <AiOutlineStar />}
+                    {isStarred ? <AiFillStar /> : <AiOutlineStar />}
                 </div>
             </div>
         </Card>

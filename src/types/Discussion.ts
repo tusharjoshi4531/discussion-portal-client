@@ -3,4 +3,5 @@ export interface ITopicData {
     author: string;
     tags: [];
     id: string;
+    isStarred: boolean;
 }

@@ -9,6 +9,7 @@ import TopicList from "./topic-list/TopicList";
 import SelectTags from "./select-tags/SelectTags";
 import { ITopicData } from "../../types/Discussion";
 import getTopics from "../../api/discussion/getTopics";
+import UserContext from "../../store/user-context";
 
 const MainPageContent = () => {
     // State
@@ -17,20 +18,25 @@ const MainPageContent = () => {
 
     // Context
     const { windowType } = useContext(WindowContext);
+    const { token } = useContext(UserContext);
 
     const toggleClickHandler = () => {
         setDrawerActive((state) => !state);
     };
 
-    const fetchTopics = useCallback(async (selectedTags: string[] = []) => {
-        try {
-            const result = await getTopics(selectedTags);
-            console.log(result);
-            setTopicsData(result);
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
+    const fetchTopics = useCallback(
+        async (selectedTags: string[] = []) => {
+            console.log(token);
+            try {
+                const result = await getTopics(selectedTags, token);
+                console.log(result);
+                setTopicsData(result);
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        [token]
+    );
 
     const applySelectTagsHandler = (selectedTags: string[]) => {
         console.log(selectedTags);
@@ -39,7 +45,7 @@ const MainPageContent = () => {
 
     useEffect(() => {
         fetchTopics();
-    }, []);
+    }, [fetchTopics]);
 
     return (
         <div className={classes.content}>
@@ -69,7 +75,10 @@ const MainPageContent = () => {
                 )}
             </aside>
             <section className={classes.content__main}>
-                <TopicList topicsData={topicsData} />
+                <TopicList
+                    topicsData={topicsData}
+                    setTopicData={setTopicsData}
+                />
             </section>
         </div>
     );
