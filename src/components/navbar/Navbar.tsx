@@ -56,8 +56,12 @@ const Navbar = () => {
             </nav>
             {username && (windowType === WINDOW_TYPE.WIDE || toggleOn) && (
                 <div className={classes.header__profile}>
-                    <div className={classes.header__profile__img}>T</div>
-                    <div className={classes.header__profile__name}>Tushar</div>
+                    <div className={classes.header__profile__img}>
+                        {username[0].toUpperCase()}
+                    </div>
+                    <div className={classes.header__profile__name}>
+                        {username}
+                    </div>
                     <button onClick={logoutClickHandler}>Logout</button>
                 </div>
             )}

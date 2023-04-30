@@ -6,6 +6,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import UserContext from "./store/user-context";
 import AddTopicPage from "./pages/AddTopicPage";
+import DiscussionPage from "./pages/DiscussionPage";
 
 const App = () => {
     // Context
@@ -14,7 +15,9 @@ const App = () => {
     return (
         <Layout>
             <Routes>
-                <Route path="/" element={<MainPage />} />
+                {/* <Route path="/main" element={<MainPage />} /> */}
+                <Route path="/main/:type" element={<MainPage />} />
+                <Route path="/discussion/:id" element={<DiscussionPage />} />
                 {token === "" ? (
                     <Route path="auth" element={<LoginPage />} />
                 ) : (
@@ -23,7 +26,7 @@ const App = () => {
                     </Route>
                 )}
 
-                <Route path="*" element={<Navigate to="/" />} />
+                <Route path="*" element={<Navigate to="/main/all" />} />
             </Routes>
         </Layout>
     );

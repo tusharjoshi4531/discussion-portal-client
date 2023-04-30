@@ -10,11 +10,15 @@ import SelectTags from "./select-tags/SelectTags";
 import { ITopicData } from "../../types/Discussion";
 import getTopics from "../../api/discussion/getTopics";
 import UserContext from "../../store/user-context";
+import { useNavigate, useParams } from "react-router-dom";
 
 const MainPageContent = () => {
     // State
     const [drawerActive, setDrawerActive] = useState(false);
     const [topicsData, setTopicsData] = useState<ITopicData[]>([]);
+
+    const { type } = useParams();
+    const navigate = useNavigate();
 
     // Context
     const { windowType } = useContext(WindowContext);
@@ -28,19 +32,22 @@ const MainPageContent = () => {
         async (selectedTags: string[] = []) => {
             console.log(token);
             try {
-                const result = await getTopics(selectedTags, token);
+                const result = await getTopics(selectedTags, token, type);
                 console.log(result);
                 setTopicsData(result);
             } catch (error) {
                 console.log(error);
             }
         },
-        [token]
+        [token, type]
     );
 
     const applySelectTagsHandler = (selectedTags: string[]) => {
-        console.log(selectedTags);
         fetchTopics(selectedTags);
+    };
+
+    const starredTopicsClickHandler = () => {
+        navigate(`/main/${type === "star" ? "all" : "star"}`);
     };
 
     useEffect(() => {
@@ -54,11 +61,26 @@ const MainPageContent = () => {
                     drawerActive && classes.content__drawer__active
                 }`}
             >
-                <div className={classes.content__drawer_content}>
-                    <div>sec1</div>
-                    <div>sec2</div>
+                <div className={classes.content__drawer__content}>
+                    {/* <div className={classes.content__drawer__content__search}>
+                        <input type="text" placeholder="Search" />
+                    </div> */}
+                    <div>
+                        <h3>Tags</h3>
+                    </div>
                     <div>
                         <SelectTags onApply={applySelectTagsHandler} />
+                    </div>
+                    <div
+                        className={
+                            classes.content__drawer__content__btnContainer
+                        }
+                    >
+                        <button onClick={starredTopicsClickHandler}>
+                            {type === "all"
+                                ? "Starred Topics"
+                                : "Unstarred Topics"}
+                        </button>
                     </div>
                 </div>
                 {windowType === WINDOW_TYPE.NARROW && (

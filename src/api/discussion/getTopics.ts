@@ -4,7 +4,8 @@ import { ITopicData } from "../../types/Discussion";
 
 const getTopics = async (
     tags: string[] = [],
-    token: string
+    token: string,
+    type: string = "all",
 ): Promise<ITopicData[]> => {
     const query = `tags=${tags.length > 0 ? JSON.stringify(tags) : "all"}`;
 
@@ -12,8 +13,8 @@ const getTopics = async (
         // let result;
 
         const url = `${SERVER_URL}/topics/get${
-            token === "" ? "Public" : "User"
-        }?${query}`;
+            token === "" ? "Public" : "Private"
+        }${token === "" ? "" : `/${type}`}?${query}`;
 
         const headers = {
             headers: {

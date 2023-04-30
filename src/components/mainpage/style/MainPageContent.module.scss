@@ -10,6 +10,7 @@ $togglePaddingY: 1rem;
 
 .content {
     display: flex;
+    color: $primaryFontColor;
 
     &__drawer {
         z-index: 5;
@@ -63,7 +64,7 @@ $togglePaddingY: 1rem;
             }
         }
 
-        &_content {
+        &__content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -71,10 +72,38 @@ $togglePaddingY: 1rem;
             padding: $assidePadding;
 
             & > * {
-                padding-bottom: 0.2rem;
+                padding-bottom: 0.4rem;
 
                 &:not(:last-child) {
-                    border-bottom: 1px solid $secondaryFontColor;
+                    border-bottom: 2px solid $primaryFontColor;
+                }
+            }
+
+            &__search{
+                background-color: Blue;
+            }
+
+            &__btnContainer {
+                display: flex;
+                flex-direction: column;
+
+                button {
+                    border: 1px solid $primaryFontColor;
+                    outline: 1px solid $primaryFontColor;
+                    border-radius: $borderRadius / 2;
+
+                    background-color: white;
+
+                    padding: 0.5rem 1rem;
+
+                    font-weight: bold;
+
+                    transition: 0.3s ease all;
+
+                    &:hover {
+                        outline: 1px solid $primaryDark;
+                        color: $primaryDark;
+                    }
                 }
             }
         }

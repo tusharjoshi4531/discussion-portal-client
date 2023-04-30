@@ -5,6 +5,7 @@ import classes from "./style/TopicList.module.css";
 import TopicCard from "../topic-card/TopicCard";
 import UserContext from "../../../store/user-context";
 import { starTopic } from "../../../api/discussion/starTopic";
+import { useNavigate } from "react-router-dom";
 
 interface ITopicListProps {
     topicsData: ITopicData[];
@@ -13,6 +14,11 @@ interface ITopicListProps {
 
 const TopicList: React.FC<ITopicListProps> = ({ topicsData, setTopicData }) => {
     const { token } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const topiCardClickHandler = (topicId: string) => {
+        navigate(`/discussion/${topicId}`);
+    };
 
     const starTopicHandler = (topicId: string) => {
         const topic = topicsData.find((topic) => topic.id === topicId);
@@ -34,6 +40,7 @@ const TopicList: React.FC<ITopicListProps> = ({ topicsData, setTopicData }) => {
             tags={topic.tags}
             isStarred={topic.isStarred}
             onStarClick={() => starTopicHandler(topic.id)}
+            onClick={() => topiCardClickHandler(topic.id)}
         />
     ));
 
