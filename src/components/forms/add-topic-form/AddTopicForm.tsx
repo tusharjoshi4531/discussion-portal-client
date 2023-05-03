@@ -13,6 +13,7 @@ const AddTopicForm = () => {
     const { username, token } = useContext(UserContext);
 
     const titleRef = useRef<HTMLInputElement>(null!);
+    const descriptionRef = useRef<HTMLTextAreaElement>(null!);
 
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
@@ -30,11 +31,12 @@ const AddTopicForm = () => {
     const submitHandler = async () => {
         const author = username;
         const title = titleRef.current.value;
+        const description = descriptionRef.current.value;
 
         if (author == "" || title == "" || tags.length === 0) return;
 
         try {
-            await addTopic(token, author, title, selectedTags);
+            await addTopic(token, author, title, description, selectedTags);
             navigate("/");
         } catch (error) {
             console.log(error);
@@ -61,6 +63,9 @@ const AddTopicForm = () => {
                 <>
                     <label>Title: </label>
                     <input type="text" placeholder="Title" ref={titleRef} />
+
+                    <label>Description: </label>
+                    <textarea placeholder="Title" ref={descriptionRef} />
 
                     <label>Tags: </label>
                     <Select options={tags} onSelect={selectHandler} />

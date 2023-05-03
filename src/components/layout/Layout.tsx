@@ -1,15 +1,17 @@
 import React from "react";
 import Navbar from "../navbar/Navbar";
 
+import classes from "./style/Layout.module.css";
+
 interface ILayoutProps {
     children: React.ReactNode;
 }
 
 const Layout: React.FC<ILayoutProps> = ({ children }) => {
     return (
-        <div style={{display: "flex", flexDirection:"column"}}>
+        <div className={classes.container}>
             <Navbar />
-            <section style={{ overflow: "scroll", flexGrow: "1"}}>{children}</section>
+            <section className={classes.container__body}>{children}</section>
         </div>
     );
 };

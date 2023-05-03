@@ -20,6 +20,10 @@ const Navbar = () => {
     const { username, dispatch } = useContext(UserContext);
     const { windowType } = useContext(WindowContext);
 
+    const logoClockHandler = () => {
+        navigate("/main/all");
+    };
+
     const toggleClickHandler = () => {
         setToggleOn((state) => !state);
     };
@@ -38,7 +42,9 @@ const Navbar = () => {
 
     return (
         <header className={classes.header}>
-            <h3 className={classes.header__logo}>Hello</h3>
+            <h3 className={classes.header__logo} onClick={logoClockHandler}>
+                Hello
+            </h3>
             <nav className={classes.header__action}>
                 {username && (
                     <>
@@ -74,7 +80,14 @@ const Navbar = () => {
                     {toggleOn && <AiOutlineClose />}
                 </div>
             )}
-            {!username && <button onClick={loginClickHandler}>Login</button>}
+            {!username && (
+                <button
+                    onClick={loginClickHandler}
+                    className={classes.header__login}
+                >
+                    Login
+                </button>
+            )}
         </header>
     );
 };

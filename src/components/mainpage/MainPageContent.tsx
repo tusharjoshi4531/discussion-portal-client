@@ -8,7 +8,7 @@ import WindowContext from "../../store/window-context";
 import TopicList from "./topic-list/TopicList";
 import SelectTags from "./select-tags/SelectTags";
 import { ITopicData } from "../../types/Discussion";
-import getTopics from "../../api/discussion/getTopics";
+import { getTopicsByTags } from "../../api/discussion/getTopics";
 import UserContext from "../../store/user-context";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const MainPageContent = () => {
         async (selectedTags: string[] = []) => {
             console.log(token);
             try {
-                const result = await getTopics(selectedTags, token, type);
+                const result = await getTopicsByTags(selectedTags, token, type);
                 console.log(result);
                 setTopicsData(result);
             } catch (error) {

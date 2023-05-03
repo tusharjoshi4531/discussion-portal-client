@@ -1,6 +1,8 @@
 @import "../../../styles/variables.scss";
 
 .header {
+    position: fixed;
+    width: 100%;
     z-index: 10;
     height: $headerHeight;
 
@@ -10,11 +12,11 @@
     display: flex;
     align-items: center;
 
-    padding: 0 1.25rem;
-
     &__logo {
         font-size: 1.25rem;
         margin-right: 0.5rem;
+        margin-left: 1.25rem;
+        cursor: pointer;
     }
 
     &__action {
@@ -51,6 +53,7 @@
 
         background-color: white;
         padding: 0.75rem;
+
         border-radius: $borderRadius;
 
         box-shadow: $shadow;
@@ -89,6 +92,7 @@
         display: flex;
         justify-content: center;
         transition: 0.3s ease all;
+        margin-right: 0.75rem;
 
         &:hover {
             color: $primaryDark;
@@ -108,5 +112,9 @@
             border-color: $primaryDark;
             color: $primaryDark;
         }
+    }
+
+    &__login {
+        margin-right: 1rem;
     }
 }

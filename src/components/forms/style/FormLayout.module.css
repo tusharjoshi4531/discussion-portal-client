@@ -18,7 +18,7 @@ form .control label {
   margin-bottom: 0.1rem;
   font-weight: bold;
 }
-form .control input {
+form .control input, form .control textarea {
   background-color: #edeef7;
   border: 1px solid #edeef7;
   border-radius: 12px;
@@ -28,8 +28,12 @@ form .control input {
   font-size: 0.8rem;
   transition: 0.3s ease all;
 }
-form .control input:focus {
+form .control input:focus, form .control textarea:focus {
   border: 1px solid black;
+}
+form .control textarea {
+  resize: none;
+  font-family: inherit;
 }
 form .action {
   display: flex;

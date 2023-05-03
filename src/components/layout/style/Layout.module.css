@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap");
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.container__body {
+  overflow: scroll;
+  flex-grow: 1;
+  margin-top: 3.125rem;
+}/*# sourceMappingURL=Layout.module.css.map */

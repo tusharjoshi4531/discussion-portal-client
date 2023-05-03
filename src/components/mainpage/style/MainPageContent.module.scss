@@ -9,7 +9,6 @@ $togglePaddingX: 0rem;
 $togglePaddingY: 1rem;
 
 .content {
-    display: flex;
     color: $primaryFontColor;
 
     &__drawer {
@@ -22,7 +21,7 @@ $togglePaddingY: 1rem;
             left: 0;
         }
 
-        position: absolute;
+        position: fixed;
         top: $headerHeight;
         bottom: 0px;
         left: calc(0px - #{$asideWidth});
@@ -79,7 +78,7 @@ $togglePaddingY: 1rem;
                 }
             }
 
-            &__search{
+            &__search {
                 background-color: Blue;
             }
 
@@ -110,8 +109,6 @@ $togglePaddingY: 1rem;
     }
 
     &__main {
-        flex-grow: 1;
-
         transition: 0.3s ease all;
 
         @include breakpoint(md) {

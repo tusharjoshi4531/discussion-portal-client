@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import DiscussionPageContent from "../components/discussionpage/DiscussionPageContent";
 
 const DiscussionPage = () => {
-  return (
-    <div>DiscussionPage</div>
-  )
-}
+    return <DiscussionPageContent />;
+};
 
-export default DiscussionPage
+export default DiscussionPage;
