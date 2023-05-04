@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  align-items: center;
+}
+.main__upvote {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.3);
+  transition: 0.3s ease all;
+}
+.main__upvote__active, .main__upvote:hover {
+  color: black;
+}/*# sourceMappingURL=UpvoteDownvoteSelect.module.css.map */

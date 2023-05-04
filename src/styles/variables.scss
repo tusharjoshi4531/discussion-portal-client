@@ -20,6 +20,7 @@ $borderRadius: 12px;
 $headerHeight: 3.125rem;
 
 $shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+$shadowDark: rgba(0, 0, 0, 0.50) 0px 3px 5px;
 
 @mixin breakpoint($point) {
     @if ($point == md) {

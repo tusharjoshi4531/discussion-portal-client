@@ -6,3 +6,9 @@ export interface ITopicData {
     id: string;
     isStarred: boolean;
 }
+
+export interface ICommentData {
+    id: string;
+    body: string;
+    subComments?: ICommentData[];
+}

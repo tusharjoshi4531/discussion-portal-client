@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap");
+.content__addAction {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  border-radius: 100%;
+  background-color: #b8b5ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease all;
+}
+.content__addAction:hover {
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 5px;
+}/*# sourceMappingURL=Discussion.module.css.map */

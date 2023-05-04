@@ -1,0 +1,16 @@
+.main {
+    display: flex;
+    align-items: center;
+
+    &__upvote {
+        display: flex;
+        align-items: center;
+        color: rgba($color: #000000, $alpha: 0.3);
+        transition: 0.3s ease all;
+
+        &__active,
+        &:hover {
+            color: rgba($color: #000000, $alpha: 1);
+        }
+    }
+}

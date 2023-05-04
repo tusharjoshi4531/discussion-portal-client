@@ -29,7 +29,7 @@ const TopicCard: React.FC<ITopicCardProps> = ({
     const [showTags, setShowTags] = useState(false);
 
     const starClickHandler = () => {
-        if(onStarClick) onStarClick();
+        if (onStarClick) onStarClick();
     };
 
     const toggleClickHandler = () => {
@@ -37,7 +37,6 @@ const TopicCard: React.FC<ITopicCardProps> = ({
     };
 
     const cardClickHandler = () => {
-        console.log("click");
         if (onClick) onClick();
     };
 
@@ -49,8 +48,11 @@ const TopicCard: React.FC<ITopicCardProps> = ({
 
     return (
         <Card color="secondary" borderRadius="small" padding="small">
-            <div className={classes.content} onClick={cardClickHandler}>
-                <div className={classes.content__body}>
+            <div className={classes.content}>
+                <div
+                    className={classes.content__body}
+                    onClick={cardClickHandler}
+                >
                     <h6 className={classes.content__body__author}>
                         Posted by {author}
                     </h6>

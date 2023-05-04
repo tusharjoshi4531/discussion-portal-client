@@ -1,0 +1,32 @@
+@import "../../../styles//variables.scss";
+
+$addActionDist: 2rem;
+$addActionSize: 2.5rem;
+$addActionSymbolSize: 1.5rem;
+
+.content {
+
+    &__addAction {
+        position: fixed;
+        right: $addActionDist;
+        bottom: $addActionDist;
+        width: $addActionSize;
+        height: $addActionSize;
+        font-size: $addActionSymbolSize;
+
+        border-radius: 100%;
+        background-color: $primary;
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        box-shadow: $shadow;
+        transition: 0.3s ease all;
+
+        &:hover {
+            box-shadow: $shadowDark;
+        }
+    }
+}

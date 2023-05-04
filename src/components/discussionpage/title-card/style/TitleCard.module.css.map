@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"TitleCard.module.css"}
+{"version":3,"sources":["TitleCard.module.scss","TitleCard.module.css"],"names":[],"mappings":"AACA;EAEI,aAAA;EACA,sBAAA;EACA,SAAA;ACDJ;ADGI;EACI,eAAA;ACDR;ADKI;EACI,iBAAA;EACA,oBAAA;ACHR","file":"TitleCard.module.css"}
