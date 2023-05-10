@@ -9,6 +9,15 @@ export interface ITopicData {
 
 export interface ICommentData {
     id: string;
+    author: string;
     body: string;
     subComments?: ICommentData[];
+}
+
+export interface IDiscussionReplyData {
+    id: string;
+    author: string;
+    content: string;
+    upvotes: number;
+    comments: ICommentData[];
 }

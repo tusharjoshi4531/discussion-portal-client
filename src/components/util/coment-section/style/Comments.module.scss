@@ -1,7 +1,63 @@
 @import "../../../../styles/variables.scss";
 
+$commentPadding: 0.5rem;
+
 .main {
     display: flex;
     flex-direction: column;
-    color: $primaryFontColor
+    color: $primaryFontColor;
+    border-left: 1px solid rgba($color: #000000, $alpha: 0.3);
+    padding-left: $commentPadding;
+
+    &__author {
+        font-size: 0.7rem;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 1rem;
+        border-bottom: 1px solid rgba($color: #000000, $alpha: 0.3);
+
+        &__addComment {
+            cursor: pointer;
+            color: rgba($color: #000000, $alpha: 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            transition: 0.3s ease all;
+
+            &:hover {
+                color: rgba($color: #000000, $alpha: 1);
+            }
+        }
+
+        &__addCommentInput {
+            display: flex;
+            input {
+                background-color: rgba($color: $primary, $alpha: 0.3);
+                padding: 0.15rem 0.5rem;
+                flex-grow: 1;
+
+                border: none;
+                border-bottom: 2px solid rgba($color: $primaryDark, $alpha: 0.5);
+
+                transition: 0.3s ease all;
+
+                &:focus {
+                    outline: none;
+                    border-bottom: 2px solid
+                        rgba($color: $primaryDark, $alpha: 1);
+                }
+            }
+            button {
+                background-color: rgba($color: $primaryDark, $alpha: 0.7);
+                border: none;
+                transition: 0.3s ease all;
+
+                &:hover {
+                    background-color: rgba($color: $primaryDark, $alpha: 1);
+                }
+            }
+        }
+    }
 }

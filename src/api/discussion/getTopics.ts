@@ -5,15 +5,17 @@ import { ITopicData } from "../../types/Discussion";
 export const getTopicsByTags = async (
     tags: string[] = [],
     token: string,
-    type: string = "all"
+    getStarred: boolean = false
 ): Promise<ITopicData[]> => {
     try {
-        const query = `tags=${tags.length > 0 ? JSON.stringify(tags) : "all"}`;
+        const query = `?tags=${
+            tags.length > 0 ? JSON.stringify(tags) : "all"
+        }&getStarred=${getStarred ? true : false}`;
         // let result;
 
         const url = `${SERVER_URL}/topics/get${
             token === "" ? "Public" : "Private"
-        }${token === "" ? "" : `/${type}`}?${query}`;
+        }${query}`;
 
         const headers = {
             headers: {
@@ -39,22 +41,13 @@ const nullTopic: ITopicData = {
     isStarred: false,
 };
 
-export const getTopicById = async (
-    id: string,
-    token: string
-): Promise<ITopicData> => {
-    if (id === "" || token === "") return { ...nullTopic };
+export const getTopicById = async (id: string): Promise<ITopicData> => {
+    if (id === "") return { ...nullTopic };
 
     try {
-        const url = `${SERVER_URL}/topics/getPrivate/id?id=${id}`;
+        const url = `${SERVER_URL}/topics/getById?id=${id}`;
 
-        const headers = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
-        const result = await axios(url, headers);
+        const result = await axios(url);
 
         return result.data;
     } catch (error) {

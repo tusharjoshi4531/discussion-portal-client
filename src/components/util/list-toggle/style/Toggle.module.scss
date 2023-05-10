@@ -1,0 +1,16 @@
+.toggle {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+    transition: 0.3s ease all;
+    cursor: pointer;
+
+    color: rgba($color: #000000, $alpha: 0.3);
+
+    &__active,
+    &:hover {
+        color: rgba($color: #000000, $alpha: 1);
+    }
+}

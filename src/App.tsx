@@ -8,6 +8,8 @@ import UserContext from "./store/user-context";
 import AddTopicPage from "./pages/AddTopicPage";
 import DiscussionPage from "./pages/DiscussionPage";
 
+import AddReplyPage from "./pages/AddReplyPage";
+
 const App = () => {
     // Context
     const { token } = useContext(UserContext);
@@ -16,13 +18,17 @@ const App = () => {
         <Layout>
             <Routes>
                 {/* <Route path="/main" element={<MainPage />} /> */}
-                <Route path="/main/:type" element={<MainPage />} />
-                <Route path="/discussion/:id" element={<DiscussionPage />} />
+                <Route path="main/:type" element={<MainPage />} />
+                <Route path="discussion/:id" element={<DiscussionPage />} />
                 {token === "" ? (
                     <Route path="auth" element={<LoginPage />} />
                 ) : (
                     <Route path="add">
                         <Route path="topic" element={<AddTopicPage />} />
+                        <Route
+                            path="discussion/:id"
+                            element={<AddReplyPage />}
+                        />
                     </Route>
                 )}
 

@@ -32,7 +32,11 @@ const MainPageContent = () => {
         async (selectedTags: string[] = []) => {
             console.log(token);
             try {
-                const result = await getTopicsByTags(selectedTags, token, type);
+                const result = await getTopicsByTags(
+                    selectedTags,
+                    token,
+                    type === "star"
+                );
                 console.log(result);
                 setTopicsData(result);
             } catch (error) {
@@ -71,17 +75,19 @@ const MainPageContent = () => {
                     <div>
                         <SelectTags onApply={applySelectTagsHandler} />
                     </div>
-                    <div
-                        className={
-                            classes.content__drawer__content__btnContainer
-                        }
-                    >
-                        <button onClick={starredTopicsClickHandler}>
-                            {type === "all"
-                                ? "Starred Topics"
-                                : "Unstarred Topics"}
-                        </button>
-                    </div>
+                    {token !== "" && (
+                        <div
+                            className={
+                                classes.content__drawer__content__btnContainer
+                            }
+                        >
+                            <button onClick={starredTopicsClickHandler}>
+                                {type === "all"
+                                    ? "Starred Topics"
+                                    : "Unstarred Topics"}
+                            </button>
+                        </div>
+                    )}
                 </div>
                 {windowType === WINDOW_TYPE.NARROW && (
                     <div

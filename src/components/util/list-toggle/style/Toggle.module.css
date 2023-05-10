@@ -1,0 +1,14 @@
+.toggle {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.3rem;
+  transition: 0.3s ease all;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.3);
+}
+.toggle__active, .toggle:hover {
+  color: black;
+}/*# sourceMappingURL=Toggle.module.css.map */

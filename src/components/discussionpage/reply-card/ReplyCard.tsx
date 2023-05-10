@@ -6,87 +6,56 @@ import { ICommentData } from "../../../types/Discussion";
 import { AiFillCaretRight, AiFillCaretDown } from "react-icons/ai";
 
 import classes from "./style/Reply.module.css";
+import Toggle from "../../util/list-toggle/Toggle";
 
-const ReplyCard = () => {
-    const [showComments, setShowComments] = useState(false);
+interface IReplyCardProps {
+    author: string;
+    upvotes: number;
+    body: string;
+    comments: ICommentData[];
+}
+
+const ReplyCard: React.FC<IReplyCardProps> = ({ author, body, comments }) => {
+    const [showComments, setShowComments] = useState<boolean>(false);
 
     const upvoteSelectHandler = (change: number) => {
         console.log(change);
     };
 
-    const commentToggleHandler = () => {
-        setShowComments((state) => !state);
+    const commentToggleHandler = (state: boolean) => {
+        setShowComments(state);
     };
-
-    const dummycomments: ICommentData[] = [
-        {
-            id: "1",
-            body: "COMMENT 1",
-            subComments: [
-                {
-                    id: "11",
-                    body: "SUBCOMMENT 11",
-                },
-                {
-                    id: "12",
-                    body: "SUBCOMMENT 12",
-                },
-            ],
-        },
-        {
-            id: "2",
-            body: "COMMENT 2",
-            subComments: [
-                {
-                    id: "21",
-                    body: "SUBCOMMENT 21",
-                },
-                {
-                    id: "22",
-                    body: "SUBCOMMENT 22",
-                    subComments: [
-                        {
-                            id: "221",
-                            body: "SUBCOMMENT 221",
-                        },
-                    ],
-                },
-            ],
-        },
-    ];
-
-    const commentsToggleClasses = `${classes.body__actions__toggle} ${
-        showComments ? classes.body__actions__toggle__active : ""
-    }`;
 
     return (
         <Card color="secondary" padding="small" borderRadius="small">
             <div className={classes.body}>
-                <div className={classes.body__content}>Hello</div>
+                <div className={classes.body__content}>
+                    <div className={classes.body__content__author}>
+                        By {author}
+                    </div>
+                    <div className={classes.body__content__text}>{body}</div>
+                </div>
                 <div className={classes.body__actions}>
                     <UpvoteDownVoteSelect
                         fontSize="0.75rem"
                         gap="0.3rem"
                         onSelect={upvoteSelectHandler}
                     />
-                    <div
-                        className={commentsToggleClasses}
-                        onClick={commentToggleHandler}
-                    >
-                        Comments{" "}
-                        {!showComments ? (
-                            <AiFillCaretRight />
-                        ) : (
-                            <AiFillCaretDown />
-                        )}
-                    </div>
+                    <Toggle
+                        text="Comments"
+                        fontSize="0.8rem"
+                        state={showComments}
+                        onToggle={commentToggleHandler}
+                        ActiveIcon={AiFillCaretDown}
+                        InactiveIcon={AiFillCaretRight}
+                    />
                 </div>
                 <div className={classes.body__comments}>
                     {showComments && (
                         <>
                             <div className={classes.divider} />
                             <Comments
-                                comments={dummycomments}
+                                comments={comments}
                                 fontSize="0.75rem"
                                 gap="0.3rem"
                             />
