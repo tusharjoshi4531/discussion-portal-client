@@ -104,6 +104,8 @@ const DiscussionPageContent = () => {
             comments={reply.comments}
             upvotes={reply.upvotes}
             key={reply.id}
+            replyId={reply.id}
+            topicId={id ? id : ""}
         />
     ));
 

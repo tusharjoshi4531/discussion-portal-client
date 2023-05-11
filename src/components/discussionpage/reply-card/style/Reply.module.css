@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap");
 .body {
   display: flex;
   flex-direction: column;
@@ -11,6 +12,29 @@
   display: flex;
   gap: 1rem;
   font-size: 0.8rem;
+}
+.body__addCommentInput {
+  display: flex;
+}
+.body__addCommentInput input {
+  background-color: rgba(184, 181, 255, 0.3);
+  padding: 0.15rem 0.5rem;
+  flex-grow: 1;
+  border: none;
+  border-bottom: 2px solid rgba(120, 104, 230, 0.5);
+  transition: 0.3s ease all;
+}
+.body__addCommentInput input:focus {
+  outline: none;
+  border-bottom: 2px solid #7868e6;
+}
+.body__addCommentInput button {
+  background-color: rgba(120, 104, 230, 0.7);
+  border: none;
+  transition: 0.3s ease all;
+}
+.body__addCommentInput button:hover {
+  background-color: #7868e6;
 }
 .body__comments {
   display: flex;

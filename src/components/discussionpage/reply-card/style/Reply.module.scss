@@ -1,3 +1,5 @@
+@import '../../../../styles/variables.scss';
+
 $actionGap: 1rem;
 
 .body {
@@ -16,6 +18,34 @@ $actionGap: 1rem;
         display: flex;
         gap: $actionGap;
         font-size: 0.8rem;
+    }
+
+    &__addCommentInput {
+        display: flex;
+        input {
+            background-color: rgba($color: $primary, $alpha: 0.3);
+            padding: 0.15rem 0.5rem;
+            flex-grow: 1;
+
+            border: none;
+            border-bottom: 2px solid rgba($color: $primaryDark, $alpha: 0.5);
+
+            transition: 0.3s ease all;
+
+            &:focus {
+                outline: none;
+                border-bottom: 2px solid rgba($color: $primaryDark, $alpha: 1);
+            }
+        }
+        button {
+            background-color: rgba($color: $primaryDark, $alpha: 0.7);
+            border: none;
+            transition: 0.3s ease all;
+
+            &:hover {
+                background-color: rgba($color: $primaryDark, $alpha: 1);
+            }
+        }
     }
 
     &__comments {
