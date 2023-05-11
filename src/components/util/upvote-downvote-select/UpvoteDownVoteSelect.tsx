@@ -1,17 +1,13 @@
 import { useState } from "react";
 
-import {
-    TbTriangle,
-    TbTriangleInverted,
-    TbTriangleFilled,
-    TbTriangleInvertedFilled,
-} from "react-icons/tb";
+import { TbTriangleFilled, TbTriangleInvertedFilled } from "react-icons/tb";
 
 import classes from "./style/UpvoteDownvoteSelect.module.css";
 
 interface ISelectProps {
     fontSize?: string;
     gap?: string;
+    upvotes: number;
     onSelect?: (change: number) => void;
 }
 
@@ -20,6 +16,7 @@ type UpvoteState = -1 | 0 | 1;
 const UpvoteDownVoteSelect: React.FC<ISelectProps> = ({
     fontSize = "1rem",
     gap = "0.5rem",
+    upvotes,
     onSelect = (change: number) => {},
 }) => {
     const [upvoteState, setUpvoteState] = useState(0);
@@ -54,6 +51,7 @@ const UpvoteDownVoteSelect: React.FC<ISelectProps> = ({
             >
                 <TbTriangleInvertedFilled />
             </div>
+            {upvotes}
         </div>
     );
 };

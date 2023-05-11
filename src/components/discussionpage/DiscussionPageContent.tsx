@@ -14,50 +14,6 @@ import classes from "./style/Discussion.module.css";
 import { GrAdd } from "react-icons/gr";
 import { getDiscussionReplies } from "../../api/discussion/getDiscussion";
 
-const dummycomments: ICommentData[] = [
-    {
-        author: "test",
-        id: "1",
-        body: "COMMENT 1",
-        subComments: [
-            {
-                author: "test",
-                id: "11",
-                body: "SUBCOMMENT 11",
-            },
-            {
-                author: "test",
-                id: "12",
-                body: "SUBCOMMENT 12",
-            },
-        ],
-    },
-    {
-        author: "test",
-        id: "2",
-        body: "COMMENT 2",
-        subComments: [
-            {
-                author: "test",
-                id: "21",
-                body: "SUBCOMMENT 21",
-            },
-            {
-                author: "test",
-                id: "22",
-                body: "SUBCOMMENT 22",
-                subComments: [
-                    {
-                        author: "test",
-                        id: "221",
-                        body: "SUBCOMMENT 221",
-                    },
-                ],
-            },
-        ],
-    },
-];
-
 const DiscussionPageContent = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -85,7 +41,7 @@ const DiscussionPageContent = () => {
 
             try {
                 const topic = await getTopicById(id);
-                const replies = await getDiscussionReplies(id);
+                const replies = await getDiscussionReplies(id, token);
                 console.log(replies);
                 setTopicData(topic);
                 setReplies(replies);

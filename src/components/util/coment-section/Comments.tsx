@@ -73,7 +73,11 @@ const SingleComment: React.FC<SingleCommentProps> = ({
                 <div>{comment.body}</div>
             </div>
             <div className={classes.main__actions}>
-                <UpvoteDownVoteSelect fontSize="0.5rem" gap="0.2rem" />
+                <UpvoteDownVoteSelect
+                    fontSize="0.5rem"
+                    gap="0.2rem"
+                    upvotes={comment.upvotes}
+                />
                 {!readOnly && (
                     <Toggle
                         text="Add Comment"

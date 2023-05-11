@@ -11,6 +11,7 @@ import Toggle from "../../util/list-toggle/Toggle";
 import UserContext from "../../../store/user-context";
 import { addComment } from "../../../api/discussion/addComment";
 import { useNavigate } from "react-router-dom";
+import { changeReplyUpvotes } from "../../../api/discussion/changeReplyUpvotes";
 
 interface IReplyCardProps {
     topicId: string;
@@ -27,6 +28,7 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
     comments,
     topicId,
     replyId,
+    upvotes,
 }) => {
     const navigate = useNavigate();
 
@@ -38,7 +40,9 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
     const { token } = useContext(UserContext);
 
     const upvoteSelectHandler = (change: number) => {
-        console.log(change);
+        const type = change > 0 ? "up" : "down";
+        changeReplyUpvotes(token, topicId, replyId, type);
+        navigate(0);
     };
 
     const commentToggleHandler = (state: boolean) => {
@@ -71,6 +75,7 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
                     <UpvoteDownVoteSelect
                         fontSize="0.75rem"
                         gap="0.3rem"
+                        upvotes={upvotes}
                         onSelect={upvoteSelectHandler}
                     />
                     {token !== "" && (
