@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { TbTriangleFilled, TbTriangleInvertedFilled } from "react-icons/tb";
 
@@ -8,6 +8,7 @@ interface ISelectProps {
     fontSize?: string;
     gap?: string;
     upvotes: number;
+    initialState?: -1 | 0 | 1;
     onSelect?: (change: number) => void;
 }
 
@@ -17,14 +18,19 @@ const UpvoteDownVoteSelect: React.FC<ISelectProps> = ({
     fontSize = "1rem",
     gap = "0.5rem",
     upvotes,
+    initialState = 0,
     onSelect = (change: number) => {},
 }) => {
-    const [upvoteState, setUpvoteState] = useState(0);
+    const [upvoteState, setUpvoteState] = useState(initialState);
+
+    useEffect(() => {
+        setUpvoteState(initialState);
+    }, [initialState]);
 
     const upvoteToggleHandler = (newState: UpvoteState) => {
         setUpvoteState((state) => {
             const updatedState = newState === state ? 0 : newState;
-            onSelect(updatedState - state);
+            onSelect(updatedState);
             return updatedState;
         });
     };

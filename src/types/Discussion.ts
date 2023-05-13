@@ -12,7 +12,7 @@ export interface ICommentData {
     author: string;
     body: string;
     upvotes: number;
-    upvoteStatus: "up" | "down" | "none";
+    upvoteStatus: 0 | -1 | 1;
     subComments?: ICommentData[];
 }
 
@@ -21,6 +21,6 @@ export interface IDiscussionReplyData {
     author: string;
     content: string;
     upvotes: number;
-    upvoteStatus: "up" | "down" | "none";
+    upvoteStatus: 0 | -1 | 1;
     comments: ICommentData[];
 }

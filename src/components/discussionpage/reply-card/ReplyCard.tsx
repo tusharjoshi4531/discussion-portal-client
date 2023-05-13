@@ -12,12 +12,14 @@ import UserContext from "../../../store/user-context";
 import { addComment } from "../../../api/discussion/addComment";
 import { useNavigate } from "react-router-dom";
 import { changeReplyUpvotes } from "../../../api/discussion/changeReplyUpvotes";
+import { changeCommentUpvotes } from "../../../api/discussion/changeCommentUpvotes";
 
 interface IReplyCardProps {
     topicId: string;
     replyId: string;
     author: string;
     upvotes: number;
+    upvoteStatus?: -1 | 0 | 1;
     body: string;
     comments: ICommentData[];
 }
@@ -29,6 +31,7 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
     topicId,
     replyId,
     upvotes,
+    upvoteStatus = 0,
 }) => {
     const navigate = useNavigate();
 
@@ -40,8 +43,18 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
     const { token } = useContext(UserContext);
 
     const upvoteSelectHandler = (change: number) => {
-        const type = change > 0 ? "up" : "down";
+        let type = "remove";
+        if (change > 0) type = "up";
+        else if (change < 0) type = "down";
         changeReplyUpvotes(token, topicId, replyId, type);
+        navigate(0);
+    };
+
+    const commentUpvoteSelectHandler = (commentId: string, change: number) => {
+        let type = "remove";
+        if (change > 0) type = "up";
+        else if (change < 0) type = "down";
+        changeCommentUpvotes(token, commentId, topicId, replyId, type);
         navigate(0);
     };
 
@@ -53,12 +66,20 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
         setShowAddComment(state);
     };
 
+    const addCommentHandler = (
+        parentCommentId: string,
+        commentText: string
+    ) => {
+        addComment(token, topicId, parentCommentId, replyId, commentText);
+    };
+
     const addCommentSubmitHandler = () => {
         const commentText = addCommentRef.current.value;
 
         if (commentText === "" || !commentText) return;
 
-        addComment(token, topicId, "", replyId, commentText);
+        // addComment(token, topicId, "", replyId, commentText);
+        addCommentHandler("", commentText);
         navigate(0);
     };
 
@@ -77,6 +98,7 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
                         gap="0.3rem"
                         upvotes={upvotes}
                         onSelect={upvoteSelectHandler}
+                        initialState={upvoteStatus}
                     />
                     {token !== "" && (
                         <Toggle
@@ -116,8 +138,10 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
                                 fontSize="0.75rem"
                                 gap="0.3rem"
                                 readOnly={token === ""}
-                                replyId={replyId}
-                                topicId={topicId}
+                                // replyId={replyId}
+                                // topicId={topicId}
+                                onAddComment={addCommentHandler}
+                                onUpvoteChange={commentUpvoteSelectHandler}
                             />
                         </>
                     )}

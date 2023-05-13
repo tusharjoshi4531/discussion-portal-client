@@ -59,6 +59,7 @@ const DiscussionPageContent = () => {
             body={reply.content}
             comments={reply.comments}
             upvotes={reply.upvotes}
+            upvoteStatus={reply.upvoteStatus}
             key={reply.id}
             replyId={reply.id}
             topicId={id ? id : ""}

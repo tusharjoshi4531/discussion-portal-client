@@ -16,8 +16,8 @@ interface CommentsProps {
     comments?: ICommentData[];
     leftMargin?: boolean;
     readOnly?: boolean;
-    replyId: string;
-    topicId: string;
+    onAddComment?: (commentId: string, commentText: string) => void;
+    onUpvoteChange?: (commentId: string, change: number) => void;
 }
 
 interface SingleCommentProps {
@@ -25,8 +25,8 @@ interface SingleCommentProps {
     readOnly?: boolean;
     fontSize?: string;
     gap?: string;
-    replyId: string;
-    topicId: string;
+    onAddComment?: (commentId: string, commentText: string) => void;
+    onUpvoteChange?: (commentId: string, change: number) => void;
 }
 
 const SingleComment: React.FC<SingleCommentProps> = ({
@@ -34,8 +34,8 @@ const SingleComment: React.FC<SingleCommentProps> = ({
     readOnly = false,
     fontSize = "1rem",
     gap = "0rem",
-    replyId,
-    topicId,
+    onAddComment = (commentId: string, commentText: string) => {},
+    onUpvoteChange = (commentId: string, change: number) => {},
 }) => {
     const navigate = useNavigate();
 
@@ -62,9 +62,14 @@ const SingleComment: React.FC<SingleCommentProps> = ({
 
         console.log(commentText);
 
-        addComment(token, topicId, comment.id, replyId, commentText);
+        // addComment(token, topicId, comment.id, replyId, commentText);
+        onAddComment(comment.id, commentText);
         navigate(0);
     };
+
+    const upvoteSelectHandler = (change: number) => {
+        onUpvoteChange(comment.id, change);
+    }
 
     return (
         <>
@@ -77,6 +82,8 @@ const SingleComment: React.FC<SingleCommentProps> = ({
                     fontSize="0.5rem"
                     gap="0.2rem"
                     upvotes={comment.upvotes}
+                    initialState={comment.upvoteStatus}
+                    onSelect={upvoteSelectHandler}
                 />
                 {!readOnly && (
                     <Toggle
@@ -116,8 +123,10 @@ const SingleComment: React.FC<SingleCommentProps> = ({
                     leftMargin
                     gap={gap}
                     readOnly={readOnly}
-                    replyId={replyId}
-                    topicId={topicId}
+                    // replyId={replyId}
+                    // topicId={topicId}
+                    onAddComment={onAddComment}
+                    onUpvoteChange={onUpvoteChange}
                 />
             )}
         </>
@@ -130,8 +139,10 @@ const Comments: React.FC<CommentsProps> = ({
     fontSize = "1rem",
     gap = "0rem",
     readOnly = false,
-    replyId,
-    topicId,
+    // replyId,
+    // topicId,
+    onAddComment = (commentId: string, commentText: string) => {},
+    onUpvoteChange = (commentId: string, change: number) => {},
 }) => {
     const commentComponents = comments.map((comment) => (
         <SingleComment
@@ -140,8 +151,10 @@ const Comments: React.FC<CommentsProps> = ({
             gap={gap}
             key={comment.id}
             readOnly={readOnly}
-            replyId={replyId}
-            topicId={topicId}
+            // replyId={replyId}
+            // topicId={topicId}
+            onAddComment={onAddComment}
+            onUpvoteChange={onUpvoteChange}
         />
     ));
 
