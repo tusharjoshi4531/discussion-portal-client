@@ -13,6 +13,10 @@ import { addComment } from "../../../api/discussion/addComment";
 import { useNavigate } from "react-router-dom";
 import { changeReplyUpvotes } from "../../../api/discussion/changeReplyUpvotes";
 import { changeCommentUpvotes } from "../../../api/discussion/changeCommentUpvotes";
+import {
+    IReplyReducerAction,
+    REPLY_ACTION_TYPE,
+} from "../DiscussionPageContent";
 
 interface IReplyCardProps {
     topicId: string;
@@ -22,6 +26,7 @@ interface IReplyCardProps {
     upvoteStatus?: -1 | 0 | 1;
     body: string;
     comments: ICommentData[];
+    dispatch: React.Dispatch<IReplyReducerAction>;
 }
 
 const ReplyCard: React.FC<IReplyCardProps> = ({
@@ -32,6 +37,7 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
     replyId,
     upvotes,
     upvoteStatus = 0,
+    dispatch,
 }) => {
     const navigate = useNavigate();
 
@@ -42,20 +48,56 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
 
     const { token } = useContext(UserContext);
 
-    const upvoteSelectHandler = (change: number) => {
+    const upvoteSelectHandler = async (change: number) => {
         let type = "remove";
         if (change > 0) type = "up";
         else if (change < 0) type = "down";
-        changeReplyUpvotes(token, topicId, replyId, type);
-        navigate(0);
+
+        try {
+            const result = await changeReplyUpvotes(
+                token,
+                topicId,
+                replyId,
+                type
+            );
+
+            if (result) {
+                dispatch({
+                    type: REPLY_ACTION_TYPE.UPDATE_REPLY,
+                    payload: result,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        // navigate(0);
     };
 
-    const commentUpvoteSelectHandler = (commentId: string, change: number) => {
+    const commentUpvoteSelectHandler = async (
+        commentId: string,
+        change: number
+    ) => {
         let type = "remove";
         if (change > 0) type = "up";
         else if (change < 0) type = "down";
-        changeCommentUpvotes(token, commentId, topicId, replyId, type);
-        navigate(0);
+        try {
+            const result = await changeCommentUpvotes(
+                token,
+                commentId,
+                topicId,
+                replyId,
+                type
+            );
+
+            if (result)
+                dispatch({
+                    type: REPLY_ACTION_TYPE.UPDATE_REPLY,
+                    payload: result,
+                });
+        } catch (error) {
+            console.log(error);
+        }
+        // navigate(0);
     };
 
     const commentToggleHandler = (state: boolean) => {
@@ -66,11 +108,26 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
         setShowAddComment(state);
     };
 
-    const addCommentHandler = (
+    const addCommentHandler = async (
         parentCommentId: string,
         commentText: string
     ) => {
-        addComment(token, topicId, parentCommentId, replyId, commentText);
+        try {
+            const result = await addComment(
+                token,
+                topicId,
+                parentCommentId,
+                replyId,
+                commentText
+            );
+            if (result)
+                dispatch({
+                    type: REPLY_ACTION_TYPE.UPDATE_REPLY,
+                    payload: result,
+                });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const addCommentSubmitHandler = () => {
@@ -80,7 +137,8 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
 
         // addComment(token, topicId, "", replyId, commentText);
         addCommentHandler("", commentText);
-        navigate(0);
+        setShowAddComment(false);
+        // navigate(0);
     };
 
     return (

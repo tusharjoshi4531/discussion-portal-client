@@ -1,15 +1,16 @@
 import axios from "axios";
 import { SERVER_URL } from "../Util";
+import { ICommentData, IDiscussionReplyData } from "../../types/Discussion";
 
-export const changeCommentUpvotes = (
+export const changeCommentUpvotes = async (
     token: string,
     commentId: string,
     topicId: string,
     replyId: string,
-    type: string,
-) => {
+    type: string
+): Promise<IDiscussionReplyData | undefined> => {
     try {
-        axios.patch(
+        const response = await axios.patch<IDiscussionReplyData>(
             `${SERVER_URL}/discussions/changeCommentUpvote`,
             { topicId, replyId, type, commentId },
             {
@@ -18,6 +19,7 @@ export const changeCommentUpvotes = (
                 },
             }
         );
+        return response.data;
     } catch (error) {
         console.log(error);
     }

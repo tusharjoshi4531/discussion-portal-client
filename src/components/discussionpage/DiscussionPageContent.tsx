@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useReducer } from "react";
 import TitleCard from "./title-card/TitleCard";
 import {
     ICommentData,
@@ -13,6 +13,41 @@ import classes from "./style/Discussion.module.css";
 
 import { GrAdd } from "react-icons/gr";
 import { getDiscussionReplies } from "../../api/discussion/getDiscussion";
+
+export enum REPLY_ACTION_TYPE {
+    SET_VAL,
+    UPDATE_REPLY,
+}
+
+type IReplyReducerPayload = IDiscussionReplyData[] | IDiscussionReplyData;
+
+export interface IReplyReducerAction {
+    payload: IReplyReducerPayload;
+    type: REPLY_ACTION_TYPE;
+}
+
+const discussionRepliesReducer = (
+    state: IDiscussionReplyData[],
+    action: IReplyReducerAction
+) => {
+    switch (action.type) {
+        case REPLY_ACTION_TYPE.SET_VAL:
+            return action.payload as IDiscussionReplyData[];
+
+        case REPLY_ACTION_TYPE.UPDATE_REPLY:
+            const reply = action.payload as IDiscussionReplyData;
+            const newState = state.map((el) =>
+                el.id === reply.id ? reply : el
+            );
+            newState.sort((a, b) => b.upvotes - a.upvotes);
+            return newState;
+
+        default:
+            return state;
+    }
+};
+
+const initialState: IDiscussionReplyData[] = [];
 
 const DiscussionPageContent = () => {
     const { id } = useParams();
@@ -29,7 +64,10 @@ const DiscussionPageContent = () => {
         tags: [],
     });
 
-    const [replies, setReplies] = useState<IDiscussionReplyData[]>([]);
+    const [replies, dispatch] = useReducer(
+        discussionRepliesReducer,
+        initialState
+    );
 
     const replyAddClickHandler = () => {
         navigate(`/add/discussion/${id}`);
@@ -44,7 +82,7 @@ const DiscussionPageContent = () => {
                 const replies = await getDiscussionReplies(id, token);
                 console.log(replies);
                 setTopicData(topic);
-                setReplies(replies);
+                dispatch({ type: REPLY_ACTION_TYPE.SET_VAL, payload: replies });
             } catch (error) {
                 console.log(error);
             }
@@ -63,6 +101,7 @@ const DiscussionPageContent = () => {
             key={reply.id}
             replyId={reply.id}
             topicId={id ? id : ""}
+            dispatch={dispatch}
         />
     ));
 

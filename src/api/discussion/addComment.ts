@@ -1,5 +1,6 @@
 import axios from "axios";
 import { SERVER_URL } from "../Util";
+import { IDiscussionReplyData } from "../../types/Discussion";
 
 export const addComment = async (
     token: string,
@@ -7,9 +8,9 @@ export const addComment = async (
     parentId: string,
     replyId: string,
     content: string
-): Promise<boolean> => {
+): Promise<IDiscussionReplyData | undefined> => {
     try {
-        await axios.post(
+        const response = await axios.post<IDiscussionReplyData>(
             `${SERVER_URL}/discussions/addcomment`,
             { topicId, parentId, replyId, content },
             {
@@ -18,9 +19,8 @@ export const addComment = async (
                 },
             }
         );
-        return true;
+        return response.data;
     } catch (error) {
         console.log(error);
-        return false;
     }
 };
