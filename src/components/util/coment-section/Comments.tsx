@@ -6,7 +6,6 @@ import Toggle from "../list-toggle/Toggle";
 import { AiFillCaretRight, AiFillCaretDown } from "react-icons/ai";
 
 import classes from "./style/Comments.module.css";
-import { addComment } from "../../../api/discussion/addComment";
 import UserContext from "../../../store/user-context";
 import { useNavigate } from "react-router-dom";
 
@@ -62,14 +61,13 @@ const SingleComment: React.FC<SingleCommentProps> = ({
 
         console.log(commentText);
 
-        // addComment(token, topicId, comment.id, replyId, commentText);
         onAddComment(comment.id, commentText);
-        navigate(0);
+        setShowAddComment(false);
     };
 
     const upvoteSelectHandler = (change: number) => {
         onUpvoteChange(comment.id, change);
-    }
+    };
 
     return (
         <>
@@ -123,8 +121,6 @@ const SingleComment: React.FC<SingleCommentProps> = ({
                     leftMargin
                     gap={gap}
                     readOnly={readOnly}
-                    // replyId={replyId}
-                    // topicId={topicId}
                     onAddComment={onAddComment}
                     onUpvoteChange={onUpvoteChange}
                 />
@@ -139,8 +135,7 @@ const Comments: React.FC<CommentsProps> = ({
     fontSize = "1rem",
     gap = "0rem",
     readOnly = false,
-    // replyId,
-    // topicId,
+
     onAddComment = (commentId: string, commentText: string) => {},
     onUpvoteChange = (commentId: string, change: number) => {},
 }) => {
@@ -151,8 +146,6 @@ const Comments: React.FC<CommentsProps> = ({
             gap={gap}
             key={comment.id}
             readOnly={readOnly}
-            // replyId={replyId}
-            // topicId={topicId}
             onAddComment={onAddComment}
             onUpvoteChange={onUpvoteChange}
         />
