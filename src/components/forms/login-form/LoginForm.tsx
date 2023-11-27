@@ -27,6 +27,11 @@ const LoginForm = () => {
         setIsOnLogin((state) => !state);
     };
 
+    const testCredentialsHandler = () => {
+        usernameRef.current.value = "Guest1";
+        passwordRef.current.value = "1234567";
+    };
+
     // Handles form submit
     const submitHandler = async () => {
         // Retrieving data from text input
@@ -101,6 +106,11 @@ const LoginForm = () => {
             }
             action={
                 <>
+                    {isOnLogin && (
+                        <button type="button" onClick={testCredentialsHandler}>
+                            Test Credentials
+                        </button>
+                    )}
                     <button type="button" onClick={toggleFormClickHandler}>
                         {!isOnLogin ? "Login" : "Sign Up"}
                     </button>
