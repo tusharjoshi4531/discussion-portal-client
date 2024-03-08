@@ -1,4 +1,4 @@
-export interface ITopicData {
+export interface ITopic {
     title: string;
     author: string;
     description: string;
@@ -7,20 +7,20 @@ export interface ITopicData {
     isStarred: boolean;
 }
 
-export interface ICommentData {
+export interface IComment {
     id: string;
     author: string;
-    body: string;
+    parentId: string;
+    replyId: string;
+    content: string;
     upvotes: number;
     upvoteStatus: 0 | -1 | 1;
-    subComments?: ICommentData[];
 }
 
-export interface IDiscussionReplyData {
+export interface IReply {
     id: string;
     author: string;
     content: string;
     upvotes: number;
     upvoteStatus: 0 | -1 | 1;
-    comments: ICommentData[];
 }

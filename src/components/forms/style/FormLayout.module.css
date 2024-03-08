@@ -1,24 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap");
-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding: 0 1rem;
 }
-form h1 {
+.form h1 {
   text-align: center;
 }
-form .control {
+.form__control {
   display: flex;
   flex-direction: column;
 }
-form .control label {
+.form__control label {
   font-size: 0.8rem;
   margin-left: 0.5rem;
   margin-bottom: 0.1rem;
   font-weight: bold;
 }
-form .control input, form .control textarea {
+.form__control input,
+.form__control textarea {
   background-color: #edeef7;
   border: 1px solid #edeef7;
   border-radius: 12px;
@@ -28,19 +29,28 @@ form .control input, form .control textarea {
   font-size: 0.8rem;
   transition: 0.3s ease all;
 }
-form .control input:focus, form .control textarea:focus {
+.form__control input:focus,
+.form__control textarea:focus {
   border: 1px solid black;
 }
-form .control textarea {
+.form__control input[type=file]::-webkit-file-upload-button {
+  border: none;
+  background-color: #b8b5ff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+}
+.form__control textarea {
   resize: none;
   font-family: inherit;
 }
-form .action {
+.form__action {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
 }
-form .action button {
+.form button {
   background-color: #edeef7;
   border: none;
   border-radius: 12px;
@@ -49,13 +59,13 @@ form .action button {
   font-weight: bold;
   transition: 0.3s ease all;
 }
-form .action button[type=submit] {
+.form button[type=submit], .form button[type=reset] {
   background-color: #7868e6;
   color: white;
 }
-form .action button:hover {
+.form button:hover {
   background-color: rgba(237, 238, 247, 0.5);
 }
-form .action button:hover[type=submit] {
+.form button:hover[type=submit], .form button:hover[type=reset] {
   background-color: #b8b5ff;
 }/*# sourceMappingURL=FormLayout.module.css.map */
