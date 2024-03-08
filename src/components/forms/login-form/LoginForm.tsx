@@ -23,9 +23,14 @@ const LoginForm = () => {
     passwordRef.current.value = "";
     if (!isOnLogin) confirmPasswordRef.current.value = "";
 
-    // Toggle the form state
-    setIsOnLogin((state) => !state);
-  };
+        // Toggle the form state
+        setIsOnLogin((state) => !state);
+    };
+
+    const testCredentialsHandler = () => {
+        usernameRef.current.value = "Guest1";
+        passwordRef.current.value = "1234567";
+    };
 
   // Handles form submit
   const submitHandler = async () => {
@@ -78,28 +83,35 @@ const LoginForm = () => {
           <label>Password:</label>
           <input type="password" placeholder="Password" ref={passwordRef} />
 
-          {!isOnLogin && (
-            <>
-              <label>Confirm Password:</label>
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                ref={confirmPasswordRef}
-              />
-            </>
-          )}
-        </>
-      }
-      action={
-        <>
-          <button type="button" onClick={toggleFormClickHandler}>
-            {!isOnLogin ? "Login" : "Sign Up"}
-          </button>
-          <button type="submit">{isOnLogin ? "Login" : "Sign Up"}</button>
-        </>
-      }
-    />
-  );
+                    {!isOnLogin && (
+                        <>
+                            <label>Confirm Password:</label>
+                            <input
+                                type="password"
+                                placeholder="Confirm Password"
+                                ref={confirmPasswordRef}
+                            />
+                        </>
+                    )}
+                </>
+            }
+            action={
+                <>
+                    {isOnLogin && (
+                        <button type="button" onClick={testCredentialsHandler}>
+                            Test Credentials
+                        </button>
+                    )}
+                    <button type="button" onClick={toggleFormClickHandler}>
+                        {!isOnLogin ? "Login" : "Sign Up"}
+                    </button>
+                    <button type="submit">
+                        {isOnLogin ? "Login" : "Sign Up"}
+                    </button>
+                </>
+            }
+        />
+    );
 };
 
 export default LoginForm;
