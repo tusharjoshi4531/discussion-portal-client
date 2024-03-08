@@ -21,10 +21,10 @@ const FormLayout: React.FC<IFormLayoutProps> = ({
     };
 
     return (
-        <form onSubmit={submitHandler}>
+        <form className={classes.form} onSubmit={submitHandler}>
             {title && <h1>{title}</h1>}
-            <div className={classes.control}>{control}</div>
-            <div className={classes.action}>{action}</div>
+            <div className={classes.form__control}>{control}</div>
+            <div className={classes.form__action}>{action}</div>
         </form>
     );
 };

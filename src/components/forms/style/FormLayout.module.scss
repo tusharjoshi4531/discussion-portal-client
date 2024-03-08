@@ -4,7 +4,7 @@ $formGap: 2rem;
 $formPaddingX: 1rem;
 $actionGap: 1rem;
 
-form {
+.form {
     display: flex;
     flex-direction: column;
 
@@ -15,7 +15,7 @@ form {
         text-align: center;
     }
 
-    .control {
+    &__control {
         display: flex;
         flex-direction: column;
 
@@ -26,7 +26,8 @@ form {
             font-weight: bold;
         }
 
-        input, textarea {
+        input,
+        textarea {
             background-color: $bg;
 
             border: 1px solid $bg;
@@ -46,37 +47,50 @@ form {
             }
         }
 
+        input[type="file"] {
+            &::-webkit-file-upload-button {
+                border: none;
+                background-color: $primary;
+                padding: 0.2rem 0.5rem;
+                border-radius: $borderRadius;
+                box-shadow: $shadow;
+                font-weight: bold;
+            }
+        }
+
         textarea {
             resize: none;
             font-family: inherit;
         }
     }
 
-    .action {
+    &__action {
         display: flex;
         justify-content: flex-end;
         gap: $actionGap;
+    }
 
-        button {
-            background-color: $bg;
-            border: none;
-            border-radius: $borderRadius;
-            padding: 0.5rem 0.75rem;
-            box-shadow: $shadow;
-            font-weight: bold;
+    button {
+        background-color: $bg;
+        border: none;
+        border-radius: $borderRadius;
+        padding: 0.5rem 0.75rem;
+        box-shadow: $shadow;
+        font-weight: bold;
 
-            transition: 0.3s ease all;
+        transition: 0.3s ease all;
 
-            &[type="submit"] {
-                background-color: $primaryDark;
-                color: white;
-            }
+        &[type="submit"],
+        &[type="reset"] {
+            background-color: $primaryDark;
+            color: white;
+        }
 
-            &:hover {
-                background-color: rgba($bg, 0.5);
-                &[type="submit"] {
-                    background-color: $primary;
-                }
+        &:hover {
+            background-color: rgba($bg, 0.5);
+            &[type="submit"],
+            &[type="reset"] {
+                background-color: $primary;
             }
         }
     }
