@@ -43,7 +43,7 @@ const Navbar = () => {
     return (
         <header className={classes.header}>
             <h3 className={classes.header__logo} onClick={logoClockHandler}>
-                Hello
+                Discussion Portal
             </h3>
             <nav className={classes.header__action}>
                 {username && (
