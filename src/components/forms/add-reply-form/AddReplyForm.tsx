@@ -61,9 +61,9 @@ const AddReplyForm = () => {
           {showAddImageSelectInput && (
             <ImageSelectInput onImageSelect={imageSelectHandler} />
           )}
-          <button type="reset" onClick={addImageClickHandler}>
+          {/* <button type="reset" onClick={addImageClickHandler}>
             {showAddImageSelectInput ? "Remove Image" : "Add Image"}
-          </button>
+          </button> */}
         </>
       }
       action={
