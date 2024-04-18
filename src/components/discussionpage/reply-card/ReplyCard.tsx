@@ -42,6 +42,7 @@ const ReplyCard: React.FC<IReplyCardProps> = ({
 
   const upvoteClickHandler = async () => {
     try {
+      console.log(replyId);
       const newReply = await triggerUpvote(replyId, token);
       onUpvoteChange(newReply);
     } catch (err) {

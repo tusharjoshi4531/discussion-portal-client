@@ -7,10 +7,11 @@ const login = async (
   password: string
 ): Promise<IUserData> => {
   try {
-    const response = await axios.post(`${SERVER_URL}/auth/login`, {
-      username,
-      password,
-    });
+    const url = new URL("/auth", SERVER_URL);
+    url.searchParams.append("username", username);
+    url.searchParams.append("password", password);
+
+    const response = await axios.get(url.toString());
 
     return response.data;
   } catch (error) {
@@ -24,7 +25,8 @@ export const signup = async (
   password: string
 ): Promise<IUserData> => {
   try {
-    const response = await axios.post(`${SERVER_URL}/auth/signup`, {
+    const url = new URL("/auth", SERVER_URL);
+    const response = await axios.post(url.toString(), {
       username,
       password,
     });

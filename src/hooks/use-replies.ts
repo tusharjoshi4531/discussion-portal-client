@@ -10,6 +10,10 @@ export default function useReplies(topicId: string | undefined) {
   const [replies, setReplies] = useState<IReply[]>([]);
 
   const upsertReply = (reply: IReply) => {
+    console.log({
+      ids: replies.map((reply) => reply.id),
+      newId: reply.id,
+    })
     setReplies((state) => {
       const newState = state.filter((_reply) => _reply.id !== reply.id);
       newState.push(reply);
